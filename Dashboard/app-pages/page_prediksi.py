@@ -1,7 +1,9 @@
 import streamlit as st
 import re
 import nltk
-#nltk.download('stopwords') # pastikan sudah mendownload nltk
+nltk.download('stopwords')
+nltk.download('punkt')
+
 import time
 from nltk.corpus import stopwords
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory, StopWordRemover, ArrayDictionary
