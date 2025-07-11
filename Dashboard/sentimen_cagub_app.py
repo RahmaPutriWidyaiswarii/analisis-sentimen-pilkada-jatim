@@ -11,7 +11,7 @@ st.set_page_config(page_title="Analisis Sentimen Pemilihan Calon Gubernur Jawa T
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("./Data/data_cagub_analisis.csv")
+    df = pd.read_csv("Data/data_cagub_analisis.csv")
     
     name_mapping = {
         'Luluk': 'Luluk Nur Hamidah',
@@ -24,7 +24,7 @@ def load_data():
 
 @st.cache_data
 def load_kamus():
-    df_kamus = pd.read_csv('./Data/Kamus Normalisasi.csv', encoding='ISO-8859-1', header=None)
+    df_kamus = pd.read_csv('Data/Kamus Normalisasi.csv', encoding='ISO-8859-1', header=None)
     df_kamus.columns = ['Alay', 'Meaning']
     norm_dict = dict(zip(df_kamus.Alay, df_kamus.Meaning))
     
@@ -51,7 +51,7 @@ def load_kamus():
 # Load model
 @st.cache_resource 
 def load_model():
-    with open("./Model/best_saved_tfidf_vectorizer.pkl", "rb") as f_vec, open("./Model/best_saved_selector.pkl", "rb") as f_select, open("./Model/best_saved_rf_model.pkl", "rb") as f_model:
+    with open("Model/best_saved_tfidf_vectorizer.pkl", "rb") as f_vec, open("Model/best_saved_selector.pkl", "rb") as f_select, open("Model/best_saved_rf_model.pkl", "rb") as f_model:
         vectorizer = pickle.load(f_vec)
         fselector = pickle.load(f_select)
         model = pickle.load(f_model)
@@ -63,7 +63,7 @@ if "df_sentimen" not in st.session_state or "norm_dict" not in st.session_state:
     st.session_state.norm_dict = load_kamus()
 
 # Inisialisasi session_state untuk model
-if "vectorizer" not in st.session_state or "model" not in st.session_state:
+if "vectorizer" not in st.session_state or "model" not in st.session_state or "fselector" not in st.session_state:
     vectorizer, fselector, model = load_model()
     st.session_state.vectorizer = vectorizer
     st.session_state.fselector = fselector
