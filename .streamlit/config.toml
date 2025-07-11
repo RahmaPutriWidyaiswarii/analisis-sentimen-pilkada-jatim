@@ -1,0 +1,7 @@
+[theme]
+base="dark"
+primaryColor="#187498"  # Tetap menggunakan warna primer yang sama
+backgroundColor="#0A1A2F"  # Dark navy blue
+secondaryBackgroundColor="#152238"  # Medium navy blue
+textColor="#E0F2FE"  # Light cyan
+font="sans serif"
